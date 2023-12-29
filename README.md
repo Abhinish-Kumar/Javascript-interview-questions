@@ -28,12 +28,59 @@ getinnerfunction();//innerfunction call output is
 
 Why we get 23 . We don't have a reference of a because of not having outer function. But the inner function remember its lexical scope that where it came from. On function call of inner function we get its lexical scope as well.Thats why we call function with its lexical scope.
 
+```javascript
+
+function outer(){
+debugger;
+var a=23;
+return function inner(){
+console.log(a);
+}
+a=122;
+}
+
+var getinnerfunction=outer();
+getinnerfunction();
+//122
+ 
+
+```
 
 
 
 
+```javascript
+function parent(){
+var b=300;
+function outer(){
+debugger;
+var a=23;
+return function inner(){
+console.log(a,b);
+}
+a=122;
+}
 
+var getinnerfunction=outer();
+getinnerfunction();
 
+ )
+
+parent();//122,300
+
+```
+Inner function forms a closure with its outer and parent functions scope.
+Closure makes the language very powerful.Because of its capability to remember data.
+
+### What are the common uses of closure?
+1. Module design pattern.
+2. Currying.
+3. Function like once.Run once.
+4. Memoization.
+5. Maintaining state in async world.
+6. setTimeOuts.
+
+"A closure is a function that has access to its outer function scope even after the outer function has returned. This means a closure can remember and access variables and arguments of its outer function even after the function has finished."
 
 
 
