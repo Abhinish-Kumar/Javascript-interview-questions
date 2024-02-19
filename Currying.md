@@ -1,0 +1,1 @@
+# Currying Function in javascript
