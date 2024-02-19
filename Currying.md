@@ -18,5 +18,22 @@ const buildingCurrying=(firstParam)=>{
 const buildingCurryingVar=buildingCurrying("Apple")("ball")("cat");
 
 ```
+Every function takes only one parameter but its not good to write because of its complicated syntax.
+
+Lets make it simple
+
+```javascript
+
+
+```
+
+
+
+
+
+
+
+
+
 
 
