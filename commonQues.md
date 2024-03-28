@@ -33,11 +33,31 @@ console.log(x);
 
 ```
 
+#### Note :-
+The hasOwnProperty method in JavaScript is used to check if an object has a specific property as its own property, rather than inheriting it from its prototype chain. Here’s the syntax and how you use it:
+
+```javascript
+
+object.hasOwnProperty(property)
+
+```
 
 
+eg:- 
 
+```javascript
 
+const car = {
+  make: 'Toyota',
+  model: 'Corolla'
+};
 
+console.log(car.hasOwnProperty('make')); // true
+console.log(car.hasOwnProperty('year')); // false
+
+```
+
+By using prototype we add a new property or key in object or array.
 
 
 
