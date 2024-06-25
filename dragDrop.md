@@ -27,7 +27,7 @@ You need to handle the following events for the draggable element:
 - drag : Fired continuously while the element is being dragged.
 - dragend : Fired when the dragging ends.
 
-
+At the dragend position it leaves the text instance
 ```javascript
 
 //take the element to drag
