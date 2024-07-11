@@ -88,7 +88,23 @@
       console.log(linearSearch(900));//4
       console.log(arr); //[500, 200, 600, 300, 900, 700, 800]
 
+ //2. Move to Head/front method , if found swap with first element
+      //sudden reduction time taken
 
+      let arr = [500, 200, 600, 300, 700, 900, 800];
+
+      function linearSearch(key) {
+        for (let i = 0; i < arr.length; i++) {
+          if (key == arr[i]) {
+            [arr[i], arr[0]] = [arr[0], arr[i]];
+            return i - 1;
+          }
+        }
+        return -1;
+      }
+      console.log(arr); //[500, 200, 600, 300, 700, 900, 800]
+      console.log(linearSearch(900)); //4
+      console.log(arr); //[900, 200, 600, 300, 700, 500, 800]
 
 
 
