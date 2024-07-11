@@ -69,6 +69,25 @@
       console.log(linearSearch(13));  //-1
 
 
+//5. //Imporove linear search
+      //1. Transposition method , if found swap to its previous element
+      //slow reduction time taken
+
+      let arr = [500, 200, 600, 300, 700, 900, 800];
+
+      function linearSearch(key) {
+        for (let i = 0; i < arr.length; i++) {
+          if (key == arr[i]) {
+            [arr[i], arr[i - 1]] = [arr[i - 1], arr[i]];
+            return i - 1;
+          }
+        }
+        return -1;
+      }
+      console.log(arr); //[500, 200, 600, 300, 700, 900, 800]
+      console.log(linearSearch(900));//4
+      console.log(arr); //[500, 200, 600, 300, 900, 700, 800]
+
 
 
 
