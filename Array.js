@@ -88,7 +88,7 @@
       console.log(linearSearch(900));//4
       console.log(arr); //[500, 200, 600, 300, 900, 700, 800]
 
- //2. Move to Head/front method , if found swap with first element
+        //2. Move to Head/front method , if found swap with first element
       //sudden reduction time taken
 
       let arr = [500, 200, 600, 300, 700, 900, 800];
@@ -108,7 +108,41 @@
 
 
 
+//6 Binary Search
 
+//a. with loop
+//Implement Binary search with loop
+      // Array must be sorted
+
+      let arr = [4, 8, 10, 15, 18, 21, 24, 27, 29, 33, 34, 37, 39, 41, 43, 50];
+
+      function binarySearch(element) {
+        //first index
+        let l = 0;
+
+        //last index
+        let h = arr.length - 1;
+        //         let mid = Math.floor(l + h / 2); error
+
+        while (l <= h) {
+          //mid always update with new l and h
+          let mid = Math.floor((l + h) / 2);
+          if (arr[mid] == element) {
+            return mid;
+          } else if (element < arr[mid]) {
+            //move to left
+            h = mid - 1;
+          } else {
+            //move to right
+            l = mid + 1;
+          }
+        }
+
+        return -1;
+      }
+      console.log(arr[binarySearch(27)]);
+      console.log(arr[binarySearch(33)]);
+      console.log(binarySearch(330));
 
 
 
