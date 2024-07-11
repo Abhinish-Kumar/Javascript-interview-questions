@@ -29,7 +29,23 @@
 //==> [1, 2, 50000, 3, 4, 5]
 
 
+//3.  
+//wap to delete an element of an array with index number
+      //and return that deleted element
+      //max O(n) , min O(1)   if at first index
 
+      let arr = [100, 200, 300, 400, 500];
+
+      function del(index) {
+        let element = arr[index];
+        for (let i = index; i < arr.length - 1; i++) {
+          arr[i] = arr[i + 1];
+        }
+        arr.length--;
+        return element;
+      }
+      console.log(del(2)); //300
+      console.log(arr); // [100, 200, 400, 500]
 
 
 
