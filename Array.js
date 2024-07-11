@@ -48,6 +48,45 @@
       console.log(arr); // [100, 200, 400, 500]
 
 
+//4.
+//Implement linear search , by taking a key element , if fount return index, i not then return -1
+      //beast case O(1)
+      //worst case O(n)
+      //average case O(n)
+
+      let arr = [500, 200, 600, 300, 700, 900, 800];
+
+      function linearSearch(key) {
+        for (let i = 0; i < arr.length; i++) {
+          if (key == arr[i]) {
+            return i;
+          }
+        }
+        return -1;
+      }
+
+      console.log(linearSearch(300)); //3
+      console.log(linearSearch(13));  //-1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
