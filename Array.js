@@ -147,6 +147,36 @@
 
 
 
+//b. 
+ //Implement Binary search with recursion /tail recursion
+      //not prefer because it uses stack
+      // Array must be sorted
+
+let arr = [4, 8, 10, 15, 18, 21, 24, 27, 29, 33, 34, 37, 39, 41, 43, 50];
+
+function binarySearchRecursive(l, h, element) {
+  if (l > h) {
+    return -1;
+  }
+  
+  let mid = Math.floor((l + h) / 2);
+  
+  if (arr[mid] == element) {
+    return mid;
+  } else if (element < arr[mid]) {
+    return binarySearchRecursive(l, mid - 1, element);
+  } else {
+    return binarySearchRecursive(mid + 1, h, element);
+  }
+}
+
+function binarySearch(element) {
+  return binarySearchRecursive(0, arr.length - 1, element);
+}
+
+console.log(binarySearch(27)); // Output: 7
+console.log(binarySearch(33)); // Output: 9
+console.log(binarySearch(330)); // Output: -1
 
 
 
