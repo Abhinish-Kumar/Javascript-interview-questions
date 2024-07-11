@@ -1,1 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #box {
+        border: 2px solid red;
+        margin: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <form>
+      <input type="text" id="Name" />
+      <input type="password" id="Password" />
+      <button type="submit">Submit</button>
+    </form>
+
+    <div class="list"></div>
+    <script>
+      //create a function that takes input from the user and push the data to array
+      let database = [];
+      function createUser() {
+        let name = document.getElementById("Name");
+        let password = document.getElementById("Password");
+        database.push({ name: name.value, Password: password.value });
+        name.value = "";
+        password.value = "";
+        console.log(database);
+      }
+      document.querySelector("form").addEventListener("submit", (e) => {
+        e.preventDefault();
+        createUser();
+        display();
+      });
+
+      //create another function to display the user data to the screen
+      function display() {
+        let list = document.querySelector(".list");
+        list.innerHTML = database
+          .map((user) => {
+            return `
+                        <div id="box">
+                        <h3>${user.name}</h3>
+                        <h3>${user.Password}</h3>
+                        </div>
+                        `;
+          })
+          .join("");
+      }
+    </script>
+  </body>
+</html>
 
