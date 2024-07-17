@@ -179,6 +179,138 @@ console.log(binarySearch(33)); // Output: 9
 console.log(binarySearch(330)); // Output: -1
 
 
+//7 Get(index)   = read   O(1)
+//We want to know the element at a particular index
+//If index is valid (not more then length and less then 0)
+
+  let arr = [4, 8, 10, 15, 18];
+
+      function get(index) {
+        if (index >= 0 && index < arr.length) {
+          return arr[index];
+        }
+        return -1;
+      }
+
+      console.log(get(4)); //18
+      console.log(get(0)); //4
+
+
+
+//8 set(index,x)     O(1)
+//update value at a particular index
+//return updated array
+
+ let arr = [4, 8, 10, 15, 18];
+
+      function set(index, x) {
+        if (index >= 0 && index < arr.length) {
+          arr[index] = x;
+          return arr;
+        }
+        return -1;
+      }
+
+      console.log(set(4, 900)); //[4, 8, 10, 15, 900]
+      console.log(set(0, 1111)); //[1111, 8, 10, 15, 900]
+
+
+
+//9 max()  O(n)
+//If list is sorted return last element O(1)
+
+ let arr = [4, 8, 100, 15, 18];
+
+      function max() {
+        let max = arr[0];
+        for (let i = 0; i < arr.length; i++) {
+          if (max < arr[i]) {
+            max = arr[i];
+          }
+        }
+        return max;
+      }
+
+      console.log(max()); //100
+
+//10 min()  O(n)
+
+
+
+ let arr = [40, 8, 100, 15, 18];
+
+      function min() {
+        let min = arr[0];
+        for (let i = 0; i < arr.length; i++) {
+          if (min > arr[i]) {
+            min = arr[i];
+          }
+        }
+        return min;
+      }
+
+      console.log(min()); //8
+
+
+//11 sum() find summ of all array element  O(n)
+
+//traverse all element and add then to a total variable and return that.
+
+ let arr = [100, 200, 200, 500, 1000];
+
+      function sum() {
+        let sum = 0;
+        for (let i = 0; i < arr.length; i++) {
+          sum += arr[i];
+        }
+        return sum;
+      }
+      console.log(sum());//2000
+
+
+
+
+//12 sum() recursive version O(n)
+
+
+//13 Average() 
+//sum of all the element divide number of elements
+
+let arr = [100, 200, 200, 500, 1000];
+
+      function average() {
+        let sum = 0;
+        for (let i = 0; i < arr.length; i++) {
+          sum += arr[i];
+        }
+        return sum / arr.length;
+      }
+      console.log(average());//400
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
