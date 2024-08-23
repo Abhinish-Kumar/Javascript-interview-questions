@@ -1,1 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      h1 {
+        text-align: center;
+      }
+      .stars {
+        background-color: orange;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+      }
+      .stars > div {
+        width: 20px;
+        height: 20px;
+        background-color: white;
+        color: black;
+        border: 1px solid rgb(177, 34, 34);
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Star Rating Component</h1>
+    <div class="stars">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <div class="count">Count:- 0</div>
+    <script>
+      let arr = [1, 2, 3, 4, 5];
+      document.querySelector(".stars").innerHTML = arr
+        .map((star) => {
+          return `<div class="star">${star}</div>`;
+        })
+        .join("");
+
+      // console.log(stars);
+      document.querySelector(".stars").addEventListener("click", (e) => {
+        console.log(e.target.innerHTML);
+
+        let starts = document.querySelectorAll(".star");
+        starts.forEach((st) => {
+          st.style.color = "black";
+        });
+        for (let i = 0; i < e.target.innerHTML; i++) {
+          console.log(arr[i]);
+          starts[i].style.color = "red";
+        }
+        document.querySelector(".count").innerHTML =
+          "Count :- " + e.target.innerHTML;
+      });
+    </script>
+  </body>
+</html>
 
