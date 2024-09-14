@@ -1,1 +1,101 @@
+*{
+margin:0;
+padding:0;
+}
+*,*::before,*::after{
+box-sizing: border-box;
+}
+:root{
+--default-padding:5rem;
+}
+
+/* button to add new client */
+#clientForm{
+            margin: 1rem;
+            padding: .6rem;
+            background-color: rgb(7, 7, 179);
+            color: rgb(255, 255, 255);
+            border-radius: 1rem;
+}
+
+body{
+            width: 100%;
+            padding-left: 2rem;
+            padding-right: 2rem;
+}
+
+.container{
+            width: 100%;
+            height: 60vh;
+            border: 2px solid black;
+            padding: 1rem;
+            display: flex;
+            background-color: rgb(193, 130, 22);
+}
+.clientList{
+            width: 40%;
+            height:100%;
+            border: 2px solid black;
+            padding: 1rem;
+            border-radius: .5rem;
+            background-color: rgb(180, 17, 17);
+
+}
+.clientList li{
+          color: white;  
+          display: flex;
+          justify-content: space-between;
+}
+.displayCLient{
+            width: 60%;
+            border-radius: .5rem;
+            height:100%;
+            border: 2px solid rgb(0, 0, 0);
+            padding: 1rem;
+            color: white;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+}
+
+span{
+            color: rgb(250, 250, 250);
+            cursor: pointer;
+}
+span:hover{
+            color: rgb(251, 251, 251);
+            font-size: 1.3rem;
+            cursor: pointer;
+}
+
+.fo{
+            position:fixed;
+            width: 100%;
+            height: 100vh;
+            
+            background-color: rgba(210, 173, 105, 0);
+
+            display:flex;
+            justify-content:center;
+            align-items:center;
+          
+}
+
+.show{
+            display: none;
+}
+
+
+form{
+            background-color: orange;
+            padding: 2rem;
+            border-radius: 1rem;
+}
+
+
+
+
+
+
+
 
