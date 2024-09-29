@@ -1,1 +1,68 @@
 
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      .chess {
+        width: 500px;
+        height: 500px;
+        background-color: grey;
+      }
+      .row {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+      }
+      .column {
+        width: calc(500px / 8);
+        height: calc(500px / 8);
+        display: flex;
+        flex-wrap: wrap;
+        border: 2px solid;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="chess"></div>
+    <script>
+      let chess = document.querySelector(".chess");
+      let flag = true;
+      for (let i = 0; i < 8; i++) {
+        let row = document.createElement("div");
+        row.classList.add("row");
+
+        for (let j = 0; j < 8; j++) {
+          let column = document.createElement("div");
+          column.classList.add("column");
+          row.appendChild(column);
+          if (flag) {
+            if (j % 2 == 0) {
+              column.style.backgroundColor = "red";
+            } else {
+              column.style.backgroundColor = "pink";
+            }
+          } else {
+            if (j % 2 != 0) {
+              column.style.backgroundColor = "red";
+            } else {
+              column.style.backgroundColor = "pink";
+            }
+          }
+        }
+        flag = flag ? false : true;
+        chess.appendChild(row);
+      }
+
+      
+    </script>
+  </body>
+</html>
