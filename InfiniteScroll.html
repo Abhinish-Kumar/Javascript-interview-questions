@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        background-color: black;
+      }
+      #root {
+        border: 2px solid red;
+      }
+      .box {
+        width: 300px;
+        height: 300px;
+        background-color: orange;
+        border: 3px solid green;
+        margin-top: 2rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root">
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+    </div>
+    <script>
+      //       window.addEventListener("scroll", () => {
+      //         const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      //         console.log(`Scroll Position: ${scrollTop}px`);
+      //       });
+
+      window.addEventListener("scroll", () => {
+        //         if (document.documentElement.scrollHeight) {
+        //         console.log(document.documentElement.scrollHeight); //height of document html elemet (fix)
+        //         console.log(window.scrollY + window.innerHeight);
+        if (
+          document.documentElement.scrollHeight <
+          window.scrollY + window.innerHeight + 200
+        ) {
+          let box = document.createElement("div");
+          box.classList.add("box");
+          document.querySelector("#root").appendChild(box);
+        }
+        //     both the above output will be equal , because scrolling starts from window-
+        // Get scroll position
+        //         console.log(
+        //           `Scroll position - X: ${window.scrollX}, Y: ${window.scrollY}`
+        //         );
+        //         }
+      });
+    </script>
+  </body>
+</html>
