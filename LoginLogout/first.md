@@ -493,8 +493,181 @@ app.listen(PORT, () => {
 ```
 
 
+step 5 
 
+use database 
 
+```javascript
+const express = require("express");
+const path = require("path");
+
+const app = express();
+const PORT = 3300;
+
+// Mock "database" for users (you would replace this with an actual database in production)
+const usersDb = [
+  {
+    username: "abhinish",
+    password: "1234",
+    profile: {
+      name: "Abhinish",
+      email: "abhinish@example.com",
+      bio: "Developer and tech enthusiast.",
+    },
+  },
+  {
+    username: "john_doe",
+    password: "abcd1234",
+    profile: {
+      name: "John Doe",
+      email: "john.doe@example.com",
+      bio: "Designer and creative mind.",
+    },
+  },
+];
+
+// Middleware to parse JSON data
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+// Serve static files (e.g., images, CSS, etc.)
+app.use(express.static(path.join(__dirname, "public")));
+
+// Serve the HTML file at the root route
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "index.html"));
+});
+
+// POST route for login
+app.post("/login", (req, res) => {
+  const { name, password } = req.body;
+  console.log(name, password);
+
+  // Check if user exists in the "database"
+  const user = usersDb.find((user) => user.username === name);
+
+  if (user && user.password === password) {
+    // Successful login, return profile data
+    return res.json({ success: true, profile: user.profile });
+  } else {
+    // Invalid credentials
+    return res
+      .status(401)
+      .json({ success: false, message: "Invalid credentials" });
+  }
+});
+
+// POST route for logout
+app.post("/logout", (req, res) => {
+  // Handle logout (reset session or token, if used)
+  res.json({ success: true });
+});
+
+app.listen(PORT, () => {
+  console.log(`Server running on http://localhost:${PORT}`);
+});
+
+```
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #userProfile {
+        display: none;
+      }
+      .show {
+        display: block;
+      }
+      .error {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <div id="userProfile">
+        <h1>User Profile</h1>
+        <p id="profileName"></p>
+        <p id="profileEmail"></p>
+        <p id="profileBio"></p>
+        <div>
+          <button id="logout">Logout</button>
+        </div>
+      </div>
+      <div id="loginPage">
+        <form id="loginForm">
+          <input type="text" placeholder="username" class="name" />
+          <input type="password" placeholder="password" class="password" />
+          <button>Submit</button>
+          <p class="error"></p>
+        </form>
+      </div>
+    </div>
+
+    <script>
+      if (sessionStorage.getItem("loggedIn") === "true") {
+        showProfile();
+      }
+
+      document
+        .querySelector("#loginForm")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const name = document.querySelector(".name").value;
+          const password = document.querySelector(".password").value;
+
+          const response = await fetch("/login", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ name, password }),
+          });
+
+          const data = await response.json();
+
+          if (data.success) {
+            sessionStorage.setItem("loggedIn", "true");
+            // Update profile with the returned data
+            document.getElementById(
+              "profileName"
+            ).innerText = `Name: ${data.profile.name}`;
+            document.getElementById(
+              "profileEmail"
+            ).innerText = `Email: ${data.profile.email}`;
+            document.getElementById(
+              "profileBio"
+            ).innerText = `Bio: ${data.profile.bio}`;
+            showProfile();
+          } else {
+            document.querySelector(".error").innerText =
+              data.message || "Invalid credentials";
+          }
+        });
+
+      function showProfile() {
+        document.getElementById("loginPage").style.display = "none";
+        document.getElementById("userProfile").style.display = "block";
+      }
+
+      document.getElementById("logout").addEventListener("click", async (e) => {
+        e.preventDefault();
+        await fetch("/logout", {
+          method: "POST",
+        });
+        sessionStorage.setItem("loggedIn", "false");
+        window.location.reload();
+      });
+    </script>
+  </body>
+</html>
+
+```
 
 
 
