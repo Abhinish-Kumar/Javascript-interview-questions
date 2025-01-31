@@ -353,8 +353,144 @@ use session storage
 
 ```
 
+step 4
 
+connect with server
 
+```javascript
+const express = require("express");
+const path = require("path");
+
+const app = express();
+const PORT = 3300;
+
+// Middleware to parse JSON data
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+// Serve static files (e.g., images, CSS, etc.)
+app.use(express.static(path.join(__dirname, "public")));
+
+// Serve the HTML file at the root route
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "index.html"));
+});
+
+// POST route for login
+app.post("/login", (req, res) => {
+  const { name, password } = req.body;
+  console.log(name, password);
+
+  // Check credentials (hardcoded for now)
+  if (name === "abhinish" && password === "1234") {
+    // Here, set a session or JWT token (for simplicity, we'll skip session management)
+    return res.json({ success: true });
+  } else {
+    return res
+      .status(401)
+      .json({ success: false, message: "Invalid credentials" });
+  }
+});
+
+// Logout route (reset session or JWT token if used)
+app.post("/logout", (req, res) => {
+  // Clear session or JWT token if used
+  res.json({ success: true });
+});
+
+app.listen(PORT, () => {
+  console.log(`Server running on http://localhost:${PORT}`);
+});
+
+```
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #userProfile {
+        display: none;
+      }
+      .show {
+        display: block;
+      }
+      .error {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <div id="userProfile">
+        <h1>User profile is here</h1>
+        <p>name is abhinish</p>
+        <div>
+          <button id="logout">Logout</button>
+        </div>
+      </div>
+      <div id="loginPage">
+        <form id="loginForm">
+          <input type="text" placeholder="name" class="name" />
+          <input type="password" placeholder="password" class="password" />
+          <button>Submit</button>
+          <p class="error"></p>
+        </form>
+      </div>
+    </div>
+
+    <script>
+      if (sessionStorage.getItem("loggedIn") === "true") {
+        showProfile();
+      }
+
+      document
+        .querySelector("#loginForm")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const name = document.querySelector(".name").value;
+          const password = document.querySelector(".password").value;
+
+          const response = await fetch("/login", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ name, password }),
+          });
+
+          const data = await response.json();
+
+          if (data.success) {
+            sessionStorage.setItem("loggedIn", "true");
+            showProfile();
+          } else {
+            document.querySelector(".error").innerText =
+              data.message || "Invalid credentials";
+          }
+        });
+
+      function showProfile() {
+        document.getElementById("loginPage").style.display = "none";
+        document.getElementById("userProfile").style.display = "block";
+      }
+
+      document.getElementById("logout").addEventListener("click", async (e) => {
+        e.preventDefault();
+        await fetch("/logout", {
+          method: "POST",
+        });
+        sessionStorage.setItem("loggedIn", "false");
+        window.location.reload();
+      });
+    </script>
+  </body>
+</html>
+
+```
 
 
 
