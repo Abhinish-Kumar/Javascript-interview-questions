@@ -274,6 +274,87 @@ if name and password match show profile else show error in login page
 
 
 
+step 3 
+use session storage 
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #userProfile {
+        /* by default hide userprofile */
+        display: none;
+      }
+      .show {
+        /* show any of the container */
+        display: block;
+      }
+      .error {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <div id="userProfile">
+        <h1>User profile is here</h1>
+        <p>name is abhinish</p>
+        <div>
+          <button id="logout">Logout</button>
+        </div>
+      </div>
+      <div id="loginPage">
+        <form>
+          <input type="text" placeholder="name" class="name" />
+          <input type="password" placeholder="password" class="password" />
+          <button>Submit</button>
+          <p class="error"></p>
+        </form>
+      </div>
+    </div>
+
+    <!-- conditionally show boxes -->
+    <script>
+      if (sessionStorage.getItem("loggedIn") === "true") {
+        showProfile();
+      }
+      document.querySelector("form").addEventListener("submit", (e) => {
+        e.preventDefault();
+        if (
+          document.querySelector(".name").value === "abhinish" &&
+          document.querySelector(".password").value === "1234"
+        ) {
+          //set sesion if loged in
+          sessionStorage.setItem("loggedIn", "true");
+          showProfile();
+        } else {
+          document.querySelector(".error").innerText = "not a valid user";
+        }
+      });
+
+      function showProfile() {
+        document.getElementById("loginPage").style.display = "none";
+        document.getElementById("userProfile").style.display = "block"; // Directly change the display here
+      }
+
+      document.getElementById("logout").addEventListener("click", (e) => {
+        e.preventDefault();
+        sessionStorage.setItem("loggedIn", "false");
+        window.location.reload();
+      });
+      //       showProfile();
+    </script>
+  </body>
+</html>
+
+```
+
+
+
 
 
 
